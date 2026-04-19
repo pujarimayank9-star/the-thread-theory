@@ -9,9 +9,9 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
-        .vertical-text { writing-mode: vertical-rl; }
-        .hidden { display: none !important; }
-        #productModal { transition: opacity 0.3s ease; }
+        /* Modal visibility fix */
+        .modal-hidden { display: none !important; }
+        body.modal-active { overflow: hidden; }
     </style>
 </head>
 <body>
@@ -23,11 +23,11 @@
         </div>
     </nav>
 
-    <section class="container mx-auto px-6 py-20">
+    <section class="container mx-auto px-6 py-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div class="group cursor-pointer" onclick="openModal()">
+            <div class="group cursor-pointer" onclick="openProductModal()">
                 <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]0" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <img src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white px-4 py-2 text-[10px] tracking-widest uppercase shadow-sm">Quick View</div>
                 </div>
                 <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Basant Glow - Florel Kurti</h3>
@@ -36,32 +36,44 @@
         </div>
     </section>
 
-    <div id="productModal" class="hidden fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-0 md:p-4">
+    <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-0 md:p-4">
         <div class="bg-white w-full h-full md:h-auto md:max-w-5xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
             
-            <div class="md:hidden p-4 border-b flex justify-between items-center bg-white sticky top-0 z-10">
-                <span class="text-[10px] font-bold tracking-widest uppercase">Product Details</span>
-                <button onclick="closeModal()" class="text-2xl font-light">✕</button>
-            </div>
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-3xl font-light z-50 text-gray-800 md:text-black">✕</button>
 
             <div class="md:w-1/2 bg-gray-50">
-                <img id="mainModalImg" src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]1" class="w-full aspect-[3/4] object-cover">
+                <img id="mainModalImg" src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full aspect-[3/4] object-cover">
+                <div class="flex p-4 gap-2">
+                    <img src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-16 h-20 object-cover border-2 border-black">
+                    <div class="w-16 h-20 bg-gray-200 border flex items-center justify-center text-[8px] text-gray-400 uppercase">Photo 2</div>
+                    <div class="w-16 h-20 bg-gray-200 border flex items-center justify-center text-[8px] text-gray-400 uppercase">Photo 3</div>
+                </div>
             </div>
 
             <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                 <h2 class="text-3xl font-bold mb-2 brand-font text-[#4A3728]">Basant Glow - Florel Kurti</h2>
-                <p class="text-2xl text-[#C19A6B] font-semibold mb-8">₹1,499.00</p>
+                <p class="text-2xl text-[#C19A6B] font-semibold mb-6">₹1,499.00</p>
                 
+                <div class="mb-6">
+                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-4 text-gray-400">Select Size</h4>
+                    <div class="flex gap-3">
+                        <button class="w-10 h-10 border border-gray-300 flex items-center justify-center text-xs hover:border-black transition">S</button>
+                        <button class="w-10 h-10 border-2 border-black flex items-center justify-center text-xs font-bold bg-black text-white">M</button>
+                        <button class="w-10 h-10 border border-gray-300 flex items-center justify-center text-xs hover:border-black transition">L</button>
+                        <button class="w-10 h-10 border border-gray-300 flex items-center justify-center text-xs hover:border-black transition">XL</button>
+                    </div>
+                </div>
+
                 <div class="mb-10">
-                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-gray-400 font-semibold text-gray-400">Description</h4>
-                    <p class="text-[12px] leading-relaxed text-gray-600 font-light">
-                        Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat.
+                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-2 text-gray-400">Product Details</h4>
+                    <p class="text-[12px] leading-relaxed text-gray-600 font-light italic">
+                        Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat. Designed by The Thread Theory.
                     </p>
                 </div>
 
-                <div class="flex flex-col space-y-3">
-                    <button class="bg-[#4A3728] text-white py-5 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition">Add to Bag</button>
-                    <button class="border border-[#4A3728] text-[#4A3728] py-5 text-xs tracking-[0.3em] uppercase font-bold">WhatsApp Order</button>
+                <div class="flex flex-col gap-3">
+                    <button class="bg-[#4A3728] text-white py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition">Add to Bag</button>
+                    <button class="border border-[#4A3728] text-[#4A3728] py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-[#4A3728] hover:text-white transition">Order on WhatsApp</button>
                 </div>
             </div>
         </div>
@@ -70,37 +82,33 @@
     <script>
         const modal = document.getElementById('productModal');
 
-        function openModal() {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
+        function openProductModal() {
+            modal.classList.remove('modal-hidden');
+            document.body.classList.add('modal-active');
             
-            // 1. Browser history mein state push karo
+            // Push a state for the modal
             window.history.pushState({ modalOpen: true }, "");
         }
 
-        function closeModal() {
-            if (!modal.classList.contains('hidden')) {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+        function closeProductModal() {
+            if (!modal.classList.contains('modal-hidden')) {
+                modal.classList.add('modal-hidden');
+                document.body.classList.remove('modal-active');
                 
-                // 2. Agar modal manually close kiya toh history back kardo taki fake state hat jaye
+                // If user closed manually, clean the history
                 if (window.history.state && window.history.state.modalOpen) {
                     window.history.back();
                 }
             }
         }
 
-        // 3. LISTEN FOR BROWSER BACK BUTTON
-        window.addEventListener('popstate', function (event) {
-            if (!modal.classList.contains('hidden')) {
-                // Agar modal khula tha aur back dabaya, toh modal band karo
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+        // Handle the Back Button
+        window.onpopstate = function(event) {
+            if (!modal.classList.contains('modal-hidden')) {
+                modal.classList.add('modal-hidden');
+                document.body.classList.remove('modal-active');
             }
-        });
-
-        // 4. Force state on initial load (Security for some browsers)
-        window.history.replaceState(null, "");
+        };
     </script>
 
 </body>
