@@ -10,7 +10,7 @@
         body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
         .vertical-text { writing-mode: vertical-rl; }
-        /* Modal Fixes */
+        /* Back Button logic classes */
         .modal-hidden { display: none !important; }
         body.modal-active { overflow: hidden; }
     </style>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="relative z-10 px-8 md:px-16 text-white max-w-2xl">
-            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold">MODERN INDIAN ETHNICS.</h2>
+            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold uppercase tracking-tight">Modern Indian Ethnics.</h2>
             <p class="text-lg mb-8 font-light tracking-wide">Timeless designs, crafted for the modern man. Experience luxury in every thread.</p>
             <button class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
         </div>
@@ -99,13 +99,13 @@
 
     <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-0 md:p-4">
         <div class="bg-white w-full h-full md:h-auto md:max-w-5xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
-            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-3xl font-light z-50 text-gray-800">✕</button>
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-3xl font-light z-50">✕</button>
 
             <div class="md:w-1/2 bg-gray-50">
-                <img id="mainModalImg" src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]1" class="w-full aspect-[3/4] object-cover">
+                <img src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]1" class="w-full aspect-[3/4] object-cover">
             </div>
 
-            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white">
+            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                 <p class="text-[10px] tracking-[0.4em] text-[#C19A6B] uppercase mb-2 font-bold">New Arrival</p>
                 <h2 class="text-3xl font-bold mb-2 brand-font text-[#4A3728]">Basant Glow - Florel Kurti</h2>
                 <p class="text-2xl text-[#C19A6B] font-semibold mb-8">₹1,499.00</p>
@@ -124,6 +124,34 @@
     </div>
 
     <footer class="bg-white border-t border-gray-200 px-8 py-16">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-600">
+            <div>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">About</h4>
+                <p class="text-[11px] leading-loose">The Thread Theory blends tradition with modern design. Each piece is crafted in Noida, India.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Support</h4>
+                <ul class="text-[10px] space-y-3 uppercase tracking-tighter">
+                    <li><a href="#" class="hover:text-black transition">Shipping</a></li>
+                    <li><a href="#" class="hover:text-black transition">Returns</a></li>
+                    <li><a href="#" class="hover:text-black transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Connect</h4>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-black transition uppercase text-[10px] font-bold">Instagram</a>
+                    <a href="#" class="hover:text-black transition uppercase text-[10px] font-bold">Facebook</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Newsletter</h4>
+                <div class="flex border-b border-gray-300 py-1">
+                    <input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full text-[10px] focus:outline-none">
+                    <button class="text-[10px] font-bold hover:text-[#C19A6B] transition uppercase">Join</button>
+                </div>
+            </div>
+        </div>
         <div class="text-center mt-16 pt-8 border-t border-gray-100 text-[9px] tracking-[0.4em] text-gray-400 uppercase">
             &copy; 2026 THE THREAD THEORY. NOIDA.
         </div>
