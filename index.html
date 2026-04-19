@@ -10,15 +10,18 @@
         body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
         .vertical-text { writing-mode: vertical-rl; }
+        /* Modal Animation logic */
+        #productModal { transition: all 0.3s ease-in-out; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <nav class="flex items-center justify-between px-6 py-4 bg-[#F9F5F0] border-b border-gray-200 sticky top-0 z-50">
-        <div class="text-gray-600 space-x-6 hidden md:flex text-[10px] tracking-widest">
-            <a href="#" class="hover:text-black transition uppercase">Home</a>
-            <a href="#" class="hover:text-black transition uppercase">New Arrivals</a>
-            <a href="#" class="hover:text-black transition uppercase">Collections</a>
+        <div class="text-gray-600 space-x-6 hidden md:flex text-[10px] tracking-widest uppercase">
+            <a href="#" class="hover:text-black transition">Home</a>
+            <a href="#" class="hover:text-black transition">New Arrivals</a>
+            <a href="#" class="hover:text-black transition">Collections</a>
         </div>
         
         <div class="text-center">
@@ -32,19 +35,14 @@
         </div>
     </nav>
 
-    <section class="relative h-[85vh] flex items-center bg-[#2C3E50] overflow-hidden">
+    <section class="relative h-[80vh] flex items-center bg-[#2C3E50] overflow-hidden">
         <div class="absolute inset-0">
             <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero Background" class="w-full h-full object-cover opacity-70">
         </div>
-
         <div class="relative z-10 px-8 md:px-16 text-white max-w-2xl">
-            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold uppercase tracking-tight">MODERN INDIAN ETHNICS.</h2>
-            <p class="text-lg mb-8 font-light tracking-wide">Timeless designs, crafted for the modern man. Experience luxury in every thread.</p>
+            <h2 class="text-4xl md:text-6xl mb-6 font-bold uppercase tracking-tight">Modern Indian Ethnics.</h2>
+            <p class="text-lg mb-8 font-light">Timeless designs, crafted for the modern man. Experience luxury in every thread.</p>
             <button class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
-        </div>
-        
-        <div class="absolute right-8 bottom-12 hidden md:block">
-            <p class="text-white text-[10px] tracking-[0.5em] vertical-text uppercase opacity-80">Est. 2026 • Made to Order</p>
         </div>
     </section>
 
@@ -56,78 +54,100 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             
-            <div class="group cursor-pointer">
+            <div class="group cursor-pointer" onclick="openModal()">
                 <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Basant Glow Kurti">
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-4 py-2 text-[10px] tracking-widest uppercase">Quick View</div>
                 </div>
                 <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Basant Glow - Florel Kurti</h3>
                 <p class="text-[10px] text-gray-500 italic mb-2">Pure Organic Cotton</p>
                 <p class="text-sm font-bold text-[#4A3728]">₹1,499.00</p>
             </div>
 
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="group opacity-50">
+                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4 flex items-center justify-center">
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Coming Soon</span>
                 </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Royal Blue Kurta</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Traditional Silk Blend</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹4,200.00</p>
+                <h3 class="text-xs tracking-widest font-semibold text-gray-300 uppercase underline decoration-dotted">Next Design</h3>
             </div>
-
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19226279/pexels-photo-19226279.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Deep Maroon Ember</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Handcrafted Embroidery</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹3,899.00</p>
             </div>
-
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19137025/pexels-photo-19137025.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Forest Green Slub</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Modern Mandarin Collar</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹2,899.00</p>
-            </div>
-
-        </div>
     </section>
 
-    <footer class="bg-white border-t border-gray-200 px-8 py-16">
+    <div id="productModal" class="hidden fixed inset-0 z-[100] bg-black bg-opacity-70 flex items-center justify-center p-4">
+        <div class="bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative rounded-sm">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+            
+            <div class="md:w-1/2 p-4 md:p-10 bg-gray-50">
+                <img id="mainModalImg" src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full aspect-[3/4] object-cover rounded-sm shadow-md">
+                <div class="flex mt-4 space-x-2">
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" onclick="document.getElementById('mainModalImg').src=this.src" class="w-20 h-24 object-cover cursor-pointer border-2 border-black">
+                    <div class="w-20 h-24 bg-gray-200 border flex items-center justify-center text-[10px] text-gray-400">Photo 2</div>
+                    <div class="w-20 h-24 bg-gray-200 border flex items-center justify-center text-[10px] text-gray-400">Photo 3</div>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold mb-2 brand-font text-[#4A3728]">Basant Glow - Florel Kurti</h2>
+                <p class="text-2xl text-[#C19A6B] font-semibold mb-8">₹1,499.00</p>
+                
+                <div class="mb-6">
+                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-4 text-gray-400">Select Size</h4>
+                    <div class="flex space-x-3">
+                        <button class="border border-gray-200 w-12 h-12 flex items-center justify-center text-xs hover:border-black transition">S</button>
+                        <button class="border-2 border-black w-12 h-12 flex items-center justify-center text-xs font-bold">M</button>
+                        <button class="border border-gray-200 w-12 h-12 flex items-center justify-center text-xs hover:border-black transition">L</button>
+                        <button class="border border-gray-200 w-12 h-12 flex items-center justify-center text-xs hover:border-black transition">XL</button>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-gray-400">Product Details</h4>
+                    <p class="text-[12px] leading-relaxed text-gray-600 font-light">
+                        Handcrafted in Noida, this kurti features premium organic cotton fabric with elegant floral prints. Designed for both comfort and a sophisticated modern ethnic look.
+                    </p>
+                </div>
+
+                <div class="flex flex-col space-y-3">
+                    <button class="bg-[#4A3728] text-white py-5 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition shadow-lg">Add to Cart</button>
+                    <button class="border border-[#4A3728] text-[#4A3728] py-5 text-xs tracking-[0.3em] uppercase font-bold hover:bg-[#4A3728] hover:text-white transition">Buy it Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-gray-200 px-8 py-16 mt-20">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-600">
             <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">About</h4>
-                <p class="text-[11px] leading-loose">The Thread Theory blends tradition with modern design. Each piece is crafted in Noida, India.</p>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase">About</h4>
+                <p class="text-[11px] leading-loose">The Thread Theory blends tradition with modern design. Each piece is crafted with love in Noida, India.</p>
             </div>
             <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Support</h4>
-                <ul class="text-[10px] space-y-3 uppercase tracking-tighter">
-                    <li><a href="#" class="hover:text-black transition">Shipping</a></li>
-                    <li><a href="#" class="hover:text-black transition">Returns</a></li>
-                    <li><a href="#" class="hover:text-black transition">Contact</a></li>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase">Support</h4>
+                <ul class="text-[10px] space-y-3 uppercase">
+                    <li><a href="#" class="hover:text-black">Shipping</a></li>
+                    <li><a href="#" class="hover:text-black">Returns</a></li>
                 </ul>
             </div>
+            <div><h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase uppercase">Est. 2026</h4></div>
             <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Connect</h4>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-black transition uppercase text-[10px] font-bold">Instagram</a>
-                    <a href="#" class="hover:text-black transition uppercase text-[10px] font-bold">Facebook</a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Newsletter</h4>
-                <div class="flex border-b border-gray-300 py-1">
-                    <input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full text-[10px] focus:outline-none">
-                    <button class="text-[10px] font-bold hover:text-[#C19A6B] transition">JOIN</button>
-                </div>
+                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase">Newsletter</h4>
+                <input type="email" placeholder="ENTER EMAIL" class="border-b border-gray-300 w-full text-[10px] py-2 focus:outline-none focus:border-black">
             </div>
         </div>
-        <div class="text-center mt-16 pt-8 border-t border-gray-100 text-[9px] tracking-[0.4em] text-gray-400 uppercase">
-            &copy; 2026 THE THREAD THEORY. NOIDA.
-        </div>
+        <div class="text-center mt-12 text-[9px] tracking-[0.5em] text-gray-400 uppercase">© THE THREAD THEORY</div>
     </footer>
+
+    <script>
+        function openModal() {
+            document.getElementById('productModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Stop background scroll
+        }
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enable scroll
+        }
+    </script>
 
 </body>
 </html>
