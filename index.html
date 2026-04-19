@@ -10,7 +10,7 @@
         body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
         .vertical-text { writing-mode: vertical-rl; }
-        /* Back Button logic classes */
+        /* Modal visibility and back button logic */
         .modal-hidden { display: none !important; }
         body.modal-active { overflow: hidden; }
     </style>
@@ -18,17 +18,15 @@
 <body>
 
     <nav class="flex items-center justify-between px-6 py-4 bg-[#F9F5F0] border-b border-gray-200 sticky top-0 z-50">
-        <div class="text-gray-600 space-x-6 hidden md:flex text-[10px] tracking-widest">
-            <a href="#" class="hover:text-black transition uppercase">Home</a>
-            <a href="#" class="hover:text-black transition uppercase">New Arrivals</a>
-            <a href="#" class="hover:text-black transition uppercase">Collections</a>
+        <div class="text-gray-600 space-x-6 hidden md:flex text-[10px] tracking-widest uppercase">
+            <a href="#" class="hover:text-black transition">Home</a>
+            <a href="#" class="hover:text-black transition">New Arrivals</a>
+            <a href="#" class="hover:text-black transition">Collections</a>
         </div>
-        
         <div class="text-center">
             <h1 class="text-xl md:text-2xl tracking-[0.3em] font-bold text-[#4A3728]">THE THREAD THEORY</h1>
             <p class="text-[9px] tracking-[0.4em] text-[#8B735B] uppercase">Premium Ethnic Wear</p>
         </div>
-
         <div class="flex items-center space-x-5 text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
@@ -39,13 +37,11 @@
         <div class="absolute inset-0">
             <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero Background" class="w-full h-full object-cover opacity-70">
         </div>
-
         <div class="relative z-10 px-8 md:px-16 text-white max-w-2xl">
-            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold uppercase tracking-tight">Modern Indian Ethnics.</h2>
+            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold">MODERN INDIAN ETHNICS.</h2>
             <p class="text-lg mb-8 font-light tracking-wide">Timeless designs, crafted for the modern man. Experience luxury in every thread.</p>
             <button class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
         </div>
-        
         <div class="absolute right-8 bottom-12 hidden md:block">
             <p class="text-white text-[10px] tracking-[0.5em] vertical-text uppercase opacity-80">Est. 2026 • Made to Order</p>
         </div>
@@ -58,10 +54,9 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            
             <div class="group cursor-pointer" onclick="openProductModal()">
                 <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <img src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                 </div>
                 <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Basant Glow - Florel Kurti</h3>
                 <p class="text-[10px] text-gray-500 italic mb-2">Pure Organic Cotton</p>
@@ -70,29 +65,9 @@
 
             <div class="group cursor-pointer">
                 <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <img src="https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-50">
                 </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Royal Blue Kurta</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Traditional Silk Blend</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹4,200.00</p>
-            </div>
-
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19226279/pexels-photo-19226279.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Deep Maroon Ember</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Handcrafted Embroidery</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹3,899.00</p>
-            </div>
-
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19137025/pexels-photo-19137025.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Forest Green Slub</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Modern Mandarin Collar</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹2,899.00</p>
+                <h3 class="text-xs tracking-widest font-semibold text-gray-400 uppercase">Coming Soon</h3>
             </div>
         </div>
     </section>
@@ -100,89 +75,55 @@
     <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-0 md:p-4">
         <div class="bg-white w-full h-full md:h-auto md:max-w-5xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
             <button onclick="closeProductModal()" class="absolute top-4 right-4 text-3xl font-light z-50">✕</button>
-
             <div class="md:w-1/2 bg-gray-50">
-                <img src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]1" class="w-full aspect-[3/4] object-cover">
+                <img src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full aspect-[3/4] object-cover">
             </div>
-
             <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                 <p class="text-[10px] tracking-[0.4em] text-[#C19A6B] uppercase mb-2 font-bold">New Arrival</p>
                 <h2 class="text-3xl font-bold mb-2 brand-font text-[#4A3728]">Basant Glow - Florel Kurti</h2>
                 <p class="text-2xl text-[#C19A6B] font-semibold mb-8">₹1,499.00</p>
-                
-                <div class="mb-6">
-                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-4 text-gray-400">Description</h4>
+                <div class="mb-10">
+                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-gray-400">Description</h4>
                     <p class="text-[12px] leading-relaxed text-gray-600 font-light italic">Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat.</p>
                 </div>
-
                 <div class="flex flex-col gap-3">
                     <button class="bg-[#4A3728] text-white py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition">Add to Bag</button>
-                    <button class="border border-[#4A3728] text-[#4A3728] py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-[#4A3728] hover:text-white transition">Order on WhatsApp</button>
+                    <button class="border border-[#4A3728] text-[#4A3728] py-4 text-xs tracking-[0.3em] uppercase font-bold">Order on WhatsApp</button>
                 </div>
             </div>
         </div>
     </div>
 
     <footer class="bg-white border-t border-gray-200 px-8 py-16">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-600">
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">About</h4>
-                <p class="text-[11px] leading-loose">The Thread Theory blends tradition with modern design. Each piece is crafted in Noida, India.</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Support</h4>
-                <ul class="text-[10px] space-y-3 uppercase tracking-tighter">
-                    <li><a href="#" class="hover:text-black transition">Shipping</a></li>
-                    <li><a href="#" class="hover:text-black transition">Returns</a></li>
-                    <li><a href="#" class="hover:text-black transition">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Connect</h4>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-black transition uppercase text-[10px] font-bold">Instagram</a>
-                    <a href="#" class="hover:text-black transition uppercase text-[10px] font-bold">Facebook</a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase underline decoration-[#C19A6B] decoration-2 underline-offset-8">Newsletter</h4>
-                <div class="flex border-b border-gray-300 py-1">
-                    <input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full text-[10px] focus:outline-none">
-                    <button class="text-[10px] font-bold hover:text-[#C19A6B] transition uppercase">Join</button>
-                </div>
-            </div>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-600 text-[10px] tracking-tighter uppercase">
+            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">About</h4><p class="leading-loose">The Thread Theory blends tradition with modern design.</p></div>
+            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">Support</h4><ul class="space-y-3"><li>Shipping</li><li>Returns</li></ul></div>
+            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">Connect</h4><div class="flex space-x-6 font-bold"><span>Instagram</span><span>Facebook</span></div></div>
+            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">Newsletter</h4><div class="flex border-b border-gray-300 py-1"><input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full focus:outline-none"><button class="font-bold">JOIN</button></div></div>
         </div>
-        <div class="text-center mt-16 pt-8 border-t border-gray-100 text-[9px] tracking-[0.4em] text-gray-400 uppercase">
-            &copy; 2026 THE THREAD THEORY. NOIDA.
-        </div>
+        <div class="text-center mt-16 pt-8 border-t border-gray-100 text-[9px] tracking-[0.4em] text-gray-400">© 2026 THE THREAD THEORY. NOIDA.</div>
     </footer>
 
     <script>
         const modal = document.getElementById('productModal');
-
         function openProductModal() {
             modal.classList.remove('modal-hidden');
             document.body.classList.add('modal-active');
             window.history.pushState({ modalOpen: true }, "");
         }
-
         function closeProductModal() {
             if (!modal.classList.contains('modal-hidden')) {
                 modal.classList.add('modal-hidden');
                 document.body.classList.remove('modal-active');
-                if (window.history.state && window.history.state.modalOpen) {
-                    window.history.back();
-                }
+                if (window.history.state && window.history.state.modalOpen) window.history.back();
             }
         }
-
-        window.onpopstate = function(event) {
+        window.onpopstate = function() {
             if (!modal.classList.contains('modal-hidden')) {
                 modal.classList.add('modal-hidden');
                 document.body.classList.remove('modal-active');
             }
         };
     </script>
-
 </body>
 </html>
