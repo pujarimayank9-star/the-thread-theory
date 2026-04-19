@@ -10,7 +10,6 @@
         body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
         .vertical-text { writing-mode: vertical-rl; }
-        /* Modal Animation logic */
         #productModal { transition: all 0.3s ease-in-out; }
         .hidden { display: none; }
     </style>
@@ -35,14 +34,14 @@
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center bg-[#2C3E50] overflow-hidden">
+    <section class="relative h-[70vh] flex items-center bg-[#2C3E50] overflow-hidden">
         <div class="absolute inset-0">
             <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero Background" class="w-full h-full object-cover opacity-70">
         </div>
         <div class="relative z-10 px-8 md:px-16 text-white max-w-2xl">
             <h2 class="text-4xl md:text-6xl mb-6 font-bold uppercase tracking-tight">Modern Indian Ethnics.</h2>
-            <p class="text-lg mb-8 font-light">Timeless designs, crafted for the modern man. Experience luxury in every thread.</p>
-            <button class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
+            <p class="text-lg mb-8 font-light">Timeless designs for the modern lifestyle.</p>
+            <button class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Now</button>
         </div>
     </section>
 
@@ -53,38 +52,27 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            
             <div class="group cursor-pointer" onclick="openModal()">
                 <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <img src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]0" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-4 py-2 text-[10px] tracking-widest uppercase">Quick View</div>
                 </div>
                 <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Basant Glow - Florel Kurti</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Pure Organic Cotton</p>
                 <p class="text-sm font-bold text-[#4A3728]">₹1,499.00</p>
             </div>
-
-            <div class="group opacity-50">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4 flex items-center justify-center">
-                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Coming Soon</span>
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-300 uppercase underline decoration-dotted">Next Design</h3>
-            </div>
-            </div>
+            
+            <div class="group opacity-30"><div class="bg-gray-200 aspect-[3/4] mb-4"></div><div class="h-4 w-24 bg-gray-200"></div></div>
+            <div class="group opacity-30"><div class="bg-gray-200 aspect-[3/4] mb-4"></div><div class="h-4 w-24 bg-gray-200"></div></div>
+            <div class="group opacity-30"><div class="bg-gray-200 aspect-[3/4] mb-4"></div><div class="h-4 w-24 bg-gray-200"></div></div>
+        </div>
     </section>
 
     <div id="productModal" class="hidden fixed inset-0 z-[100] bg-black bg-opacity-70 flex items-center justify-center p-4">
-        <div class="bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative rounded-sm">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-3xl font-light hover:rotate-90 transition-transform">&times;</button>
+        <div class="bg-white max-w-5xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-3xl font-light hover:rotate-90 transition-transform">×</button>
             
-            <div class="md:w-1/2 p-4 md:p-10 bg-gray-50">
-                <img id="mainModalImg" src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full aspect-[3/4] object-cover rounded-sm shadow-md">
-                <div class="flex mt-4 space-x-2">
-                    <img src="https://lh3.googleusercontent.com/u/0/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" onclick="document.getElementById('mainModalImg').src=this.src" class="w-20 h-24 object-cover cursor-pointer border-2 border-black">
-                    <div class="w-20 h-24 bg-gray-200 border flex items-center justify-center text-[10px] text-gray-400">Photo 2</div>
-                    <div class="w-20 h-24 bg-gray-200 border flex items-center justify-center text-[10px] text-gray-400">Photo 3</div>
-                </div>
+            <div class="md:w-1/2 p-6 bg-gray-50">
+                <img id="mainModalImg" src="https://lh3.googleusercontent.com/u/0/d/[TERI_ID_YAHAN]0" class="w-full aspect-[3/4] object-cover shadow-md">
             </div>
 
             <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
@@ -103,50 +91,51 @@
 
                 <div class="mb-10">
                     <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-gray-400">Product Details</h4>
-                    <p class="text-[12px] leading-relaxed text-gray-600 font-light">
-                        Handcrafted in Noida, this kurti features premium organic cotton fabric with elegant floral prints. Designed for both comfort and a sophisticated modern ethnic look.
+                    <p class="text-[12px] leading-relaxed text-gray-600 font-light italic">
+                        Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat.
                     </p>
                 </div>
 
                 <div class="flex flex-col space-y-3">
                     <button class="bg-[#4A3728] text-white py-5 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition shadow-lg">Add to Cart</button>
-                    <button class="border border-[#4A3728] text-[#4A3728] py-5 text-xs tracking-[0.3em] uppercase font-bold hover:bg-[#4A3728] hover:text-white transition">Buy it Now</button>
+                    <button class="border border-[#4A3728] text-[#4A3728] py-5 text-xs tracking-[0.3em] uppercase font-bold hover:bg-[#4A3728] hover:text-white transition">Order on WhatsApp</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="bg-white border-t border-gray-200 px-8 py-16 mt-20">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-600">
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase">About</h4>
-                <p class="text-[11px] leading-loose">The Thread Theory blends tradition with modern design. Each piece is crafted with love in Noida, India.</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase">Support</h4>
-                <ul class="text-[10px] space-y-3 uppercase">
-                    <li><a href="#" class="hover:text-black">Shipping</a></li>
-                    <li><a href="#" class="hover:text-black">Returns</a></li>
-                </ul>
-            </div>
-            <div><h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase uppercase">Est. 2026</h4></div>
-            <div>
-                <h4 class="font-bold text-gray-900 text-[10px] tracking-widest mb-6 uppercase">Newsletter</h4>
-                <input type="email" placeholder="ENTER EMAIL" class="border-b border-gray-300 w-full text-[10px] py-2 focus:outline-none focus:border-black">
-            </div>
-        </div>
-        <div class="text-center mt-12 text-[9px] tracking-[0.5em] text-gray-400 uppercase">© THE THREAD THEORY</div>
-    </footer>
-
     <script>
         function openModal() {
-            document.getElementById('productModal').classList.remove('hidden');
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Stop background scroll
+            
+            // MAGIC: Add a fake state to browser history
+            window.history.pushState({ modalOpen: true }, "Modal Open");
         }
+
         function closeModal() {
-            document.getElementById('productModal').classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Re-enable scroll
+            const modal = document.getElementById('productModal');
+            if (modal && !modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Resume scroll
+                
+                // If user closed with "X" button, clean history
+                if (window.history.state && window.history.state.modalOpen) {
+                    window.history.back();
+                }
+            }
         }
+
+        // MAGIC: Listen for the back button click
+        window.onpopstate = function(event) {
+            const modal = document.getElementById('productModal');
+            // If modal is open when back is pressed
+            if (!modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        };
     </script>
 
 </body>
