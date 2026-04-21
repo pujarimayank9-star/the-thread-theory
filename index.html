@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; scroll-behavior: smooth; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
         .vertical-text { writing-mode: vertical-rl; }
-        /* Modal visibility and back button logic */
         .modal-hidden { display: none !important; }
         body.modal-active { overflow: hidden; }
+        .product-card:hover img { transform: scale(1.05); }
+        #searchBar.active { display: flex; }
     </style>
 </head>
 <body>
@@ -20,110 +21,179 @@
     <nav class="flex items-center justify-between px-6 py-4 bg-[#F9F5F0] border-b border-gray-200 sticky top-0 z-50">
         <div class="text-gray-600 space-x-6 hidden md:flex text-[10px] tracking-widest uppercase">
             <a href="#" class="hover:text-black transition">Home</a>
-            <a href="#" class="hover:text-black transition">New Arrivals</a>
-            <a href="#" class="hover:text-black transition">Collections</a>
+            <a href="#shop" class="hover:text-black transition">Collections</a>
         </div>
         <div class="text-center">
             <h1 class="text-xl md:text-2xl tracking-[0.3em] font-bold text-[#4A3728]">THE THREAD THEORY</h1>
             <p class="text-[9px] tracking-[0.4em] text-[#8B735B] uppercase">Premium Ethnic Wear</p>
         </div>
         <div class="flex items-center space-x-5 text-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            <button onclick="toggleSearch()" class="focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </button>
+            <div class="relative cursor-pointer" onclick="alert('Cart functionality ready! Items: ' + cart.length)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                <span id="cartCount" class="absolute -top-2 -right-2 bg-[#C19A6B] text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+            </div>
         </div>
     </nav>
+
+    <div id="searchBar" class="hidden fixed top-[72px] left-0 w-full bg-white border-b border-gray-200 p-4 z-40 animate-fade-in">
+        <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search products (e.g. Kurti, Basant)..." class="w-full max-w-4xl mx-auto block bg-gray-50 border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:border-[#C19A6B]">
+    </div>
 
     <section class="relative h-[85vh] flex items-center bg-[#2C3E50] overflow-hidden">
         <div class="absolute inset-0">
             <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero Background" class="w-full h-full object-cover opacity-70">
         </div>
         <div class="relative z-10 px-8 md:px-16 text-white max-w-2xl">
-            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold">MODERN INDIAN ETHNICS.</h2>
-            <p class="text-lg mb-8 font-light tracking-wide">Timeless designs, crafted for the modern man. Experience luxury in every thread.</p>
-            <button class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
-        </div>
-        <div class="absolute right-8 bottom-12 hidden md:block">
-            <p class="text-white text-[10px] tracking-[0.5em] vertical-text uppercase opacity-80">Est. 2026 • Made to Order</p>
+            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold uppercase tracking-tight">Modern Indian Ethnics.</h2>
+            <p class="text-lg mb-8 font-light tracking-wide">Timeless designs, crafted for the modern man.</p>
+            <button onclick="document.getElementById('shop').scrollIntoView()" class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
         </div>
     </section>
 
-    <section class="container mx-auto px-6 py-20">
+    <section id="shop" class="container mx-auto px-6 py-20">
         <div class="flex flex-col items-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold tracking-[0.2em] text-[#4A3728] mb-2 uppercase">New Arrivals</h2>
             <div class="h-0.5 w-16 bg-[#C19A6B]"></div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div class="group cursor-pointer" onclick="openProductModal()">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-900 uppercase">Basant Glow - Florel Kurti</h3>
-                <p class="text-[10px] text-gray-500 italic mb-2">Pure Organic Cotton</p>
-                <p class="text-sm font-bold text-[#4A3728]">₹1,499.00</p>
+        <div id="productGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             </div>
-
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                    <img src="https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-50">
-                </div>
-                <h3 class="text-xs tracking-widest font-semibold text-gray-400 uppercase">Coming Soon</h3>
-            </div>
-        </div>
     </section>
 
     <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-0 md:p-4">
         <div class="bg-white w-full h-full md:h-auto md:max-w-5xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
             <button onclick="closeProductModal()" class="absolute top-4 right-4 text-3xl font-light z-50">✕</button>
-            <div class="md:w-1/2 bg-gray-50">
-                <img src="https://lh3.googleusercontent.com/d/1oOsdCx9NSBSz6xGZ1srZwW8jh8nE3HZP" class="w-full aspect-[3/4] object-cover">
+            
+            <div class="md:w-1/2 bg-gray-50 flex flex-col">
+                <img id="mainModalImg" src="" class="w-full aspect-[3/4] object-cover">
+                <div class="flex gap-2 p-4 overflow-x-auto" id="thumbGallery">
+                    </div>
             </div>
+
             <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                <p class="text-[10px] tracking-[0.4em] text-[#C19A6B] uppercase mb-2 font-bold">New Arrival</p>
-                <h2 class="text-3xl font-bold mb-2 brand-font text-[#4A3728]">Basant Glow - Florel Kurti</h2>
-                <p class="text-2xl text-[#C19A6B] font-semibold mb-8">₹1,499.00</p>
+                <p id="modalCategory" class="text-[10px] tracking-[0.4em] text-[#C19A6B] uppercase mb-2 font-bold"></p>
+                <h2 id="modalTitle" class="text-3xl font-bold mb-2 brand-font text-[#4A3728]"></h2>
+                <p id="modalPrice" class="text-2xl text-[#C19A6B] font-semibold mb-8"></p>
                 <div class="mb-10">
                     <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-gray-400">Description</h4>
-                    <p class="text-[12px] leading-relaxed text-gray-600 font-light italic">Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat.</p>
+                    <p id="modalDesc" class="text-[12px] leading-relaxed text-gray-600 font-light italic"></p>
                 </div>
                 <div class="flex flex-col gap-3">
-                    <button class="bg-[#4A3728] text-white py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition">Add to Bag</button>
+                    <button id="addToBagBtn" class="bg-[#4A3728] text-white py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition">Add to Bag</button>
                     <button class="border border-[#4A3728] text-[#4A3728] py-4 text-xs tracking-[0.3em] uppercase font-bold">Order on WhatsApp</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="bg-white border-t border-gray-200 px-8 py-16">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-600 text-[10px] tracking-tighter uppercase">
-            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">About</h4><p class="leading-loose">The Thread Theory blends tradition with modern design.</p></div>
-            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">Support</h4><ul class="space-y-3"><li>Shipping</li><li>Returns</li></ul></div>
-            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">Connect</h4><div class="flex space-x-6 font-bold"><span>Instagram</span><span>Facebook</span></div></div>
-            <div><h4 class="font-bold text-gray-900 mb-6 underline decoration-[#C19A6B] decoration-2 underline-offset-8">Newsletter</h4><div class="flex border-b border-gray-300 py-1"><input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full focus:outline-none"><button class="font-bold">JOIN</button></div></div>
-        </div>
-        <div class="text-center mt-16 pt-8 border-t border-gray-100 text-[9px] tracking-[0.4em] text-gray-400">© 2026 THE THREAD THEORY. NOIDA.</div>
-    </footer>
-
     <script>
+        // 1. PRODUCT DATA (Yaha tum apne 10 products ki details aur Drive images daal sakte ho)
+        const products = [
+            {
+                id: 1,
+                name: "Basant Glow - Florel Kurti",
+                price: 1499,
+                category: "New Arrival",
+                desc: "Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat.",
+                images: [
+                    "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", // Image 1
+                    "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", // Image 2
+                    "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"  // Image 3
+                ]
+            },
+            // Tum yaha aise hi 9 aur products add kar sakte ho...
+            {
+                id: 2,
+                name: "Azure Silk Kurta",
+                price: 2499,
+                category: "Pure Silk",
+                desc: "Elegant blue silk kurta for special occasions.",
+                images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"]
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('ttt_cart')) || [];
+        updateCartDisplay();
+
+        // 2. RENDER PRODUCTS TO GRID
+        function renderProducts(productsList) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = productsList.map(product => `
+                <div class="product-card group cursor-pointer" onclick="openProductModal(${product.id})">
+                    <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
+                        <img src="${product.images[0]}" class="w-full h-full object-cover transition-transform duration-700">
+                    </div>
+                    <h3 class="text-[10px] md:text-xs tracking-widest font-semibold text-gray-900 uppercase">${product.name}</h3>
+                    <p class="text-[9px] text-gray-500 italic mb-1">${product.category}</p>
+                    <p class="text-xs md:text-sm font-bold text-[#4A3728]">₹${product.price.toLocaleString()}.00</p>
+                </div>
+            `).join('');
+        }
+
+        renderProducts(products);
+
+        // 3. MODAL LOGIC
         const modal = document.getElementById('productModal');
-        function openProductModal() {
+        function openProductModal(id) {
+            const p = products.find(prod => prod.id === id);
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalPrice').innerText = `₹${p.price.toLocaleString()}.00`;
+            document.getElementById('modalDesc').innerText = p.desc;
+            document.getElementById('modalCategory').innerText = p.category;
+            
+            const mainImg = document.getElementById('mainModalImg');
+            mainImg.src = p.images[0];
+
+            // Setup Thumbnails (3 images logic)
+            const thumbGallery = document.getElementById('thumbGallery');
+            thumbGallery.innerHTML = p.images.map(img => `
+                <img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-20 h-20 object-cover cursor-pointer hover:opacity-70 border border-gray-200">
+            `).join('');
+
+            // Add to Bag Button
+            document.getElementById('addToBagBtn').onclick = () => addToBag(p);
+
             modal.classList.remove('modal-hidden');
             document.body.classList.add('modal-active');
-            window.history.pushState({ modalOpen: true }, "");
         }
+
         function closeProductModal() {
-            if (!modal.classList.contains('modal-hidden')) {
-                modal.classList.add('modal-hidden');
-                document.body.classList.remove('modal-active');
-                if (window.history.state && window.history.state.modalOpen) window.history.back();
-            }
+            modal.classList.add('modal-hidden');
+            document.body.classList.remove('modal-active');
         }
-        window.onpopstate = function() {
-            if (!modal.classList.contains('modal-hidden')) {
-                modal.classList.add('modal-hidden');
-                document.body.classList.remove('modal-active');
-            }
-        };
+
+        // 4. BAG/CART LOGIC
+        function addToBag(product) {
+            cart.push(product);
+            localStorage.setItem('ttt_cart', JSON.stringify(cart));
+            updateCartDisplay();
+            alert(`${product.name} added to your bag!`);
+        }
+
+        function updateCartDisplay() {
+            document.getElementById('cartCount').innerText = cart.length;
+        }
+
+        // 5. SEARCH LOGIC
+        function toggleSearch() {
+            document.getElementById('searchBar').classList.toggle('hidden');
+            document.getElementById('searchInput').focus();
+        }
+
+        function filterProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                p.category.toLowerCase().includes(term)
+            );
+            renderProducts(filtered);
+        }
+
+        // Back button logic for mobile
+        window.onpopstate = function() { closeProductModal(); };
     </script>
 </body>
 </html>
