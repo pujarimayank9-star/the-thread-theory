@@ -33,7 +33,7 @@
             <button onclick="toggleSearch()" class="focus:outline-none hover:text-[#C19A6B] transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </button>
-            <div class="relative cursor-pointer hover:text-[#C19A6B] transition">
+            <div class="relative cursor-pointer hover:text-[#C19A6B] transition" onclick="alert('Bag holds ' + cart.length + ' items.')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cartCount" class="absolute -top-2 -right-2 bg-[#C19A6B] text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">0</span>
             </div>
@@ -42,7 +42,7 @@
 
     <div id="searchBar" class="hidden fixed top-[72px] left-0 w-full bg-white border-b border-gray-200 p-6 z-40 shadow-xl transition-all-custom">
         <div class="max-w-4xl mx-auto flex items-center">
-            <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Floral, Kurti, Cotton..." class="w-full bg-transparent border-none text-lg md:text-2xl focus:outline-none brand-font italic">
+            <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search Collection..." class="w-full bg-transparent border-none text-lg md:text-2xl focus:outline-none brand-font italic">
             <button onclick="toggleSearch()" class="ml-4 text-gray-400 font-bold text-xl">✕</button>
         </div>
     </div>
@@ -69,23 +69,23 @@
         <div class="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
             <div class="col-span-1 md:col-span-1">
                 <h4 class="brand-font text-2xl font-bold text-[#4A3728] mb-6 tracking-wider uppercase">The Thread Theory</h4>
-                <p class="text-xs leading-loose text-gray-500 italic">Bridging the gap between timeless Indian tradition and modern minimal aesthetics.</p>
+                <p class="text-xs leading-loose text-gray-500 italic font-semibold">Bridging the gap between timeless Indian tradition and modern minimal aesthetics.</p>
             </div>
             <div>
                 <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block font-bold">Noida Studio</h4>
-                <p class="text-xs text-gray-500">Sector 18, Noida, Uttar Pradesh<br>India - 201301</p>
+                <p class="text-xs text-gray-500 font-bold">Sector 18, Noida, Uttar Pradesh<br>India - 201301</p>
                 <p class="text-xs mt-4 text-[#C19A6B] font-bold underline cursor-pointer" onclick="window.location.href='tel:+919068617744'">+91 9068617744</p>
             </div>
             <div>
                 <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block font-bold">Connect</h4>
                 <div class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                    <a href="https://wa.me/919068617744" target="_blank" class="hover:text-black">WhatsApp</a>
-                    <a href="#" class="hover:text-black">Instagram</a>
+                    <a href="https://wa.me/919068617744" target="_blank" class="hover:text-black transition">WhatsApp</a>
+                    <a href="#" class="hover:text-black transition font-bold">Instagram</a>
                 </div>
             </div>
         </div>
         <div class="text-center text-[9px] tracking-[0.5em] text-gray-300 border-t border-gray-50 pt-10 uppercase font-bold">
-            © 2026 THE THREAD THEORY • Modern Indian Ethnics • Noida
+            © 2026 THE THREAD THEORY • Noida
         </div>
     </footer>
 
@@ -98,14 +98,15 @@
             </div>
             <div class="md:w-2/5 p-10 md:p-16 flex flex-col justify-center">
                 <p id="modalCat" class="text-[10px] tracking-[0.5em] text-[#C19A6B] uppercase font-bold mb-4"></p>
-                <h2 id="modalTitle" class="text-4xl font-bold mb-4 text-[#4A3728] brand-font leading-tight"></h2>
-                <p id="modalPrice" class="text-3xl font-light text-[#C19A6B] mb-8"></p>
+                <h2 id="modalTitle" class="text-4xl font-bold mb-4 text-[#4A3728] brand-font leading-tight uppercase"></h2>
+                <p id="modalPrice" class="text-3xl font-light text-[#C19A6B] mb-8 font-bold"></p>
                 <div class="mb-10 space-y-4">
                     <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 border-b pb-2 font-bold">Description</h4>
-                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic"></p>
+                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic font-bold"></p>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <button id="addToBagBtn" class="bg-[#4A3728] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition">Add to Bag</button>
+                    <button class="bg-[#C19A6B] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] shadow-lg hover:bg-black transition">Buy It Now</button>
+                    <button id="addToBagBtn" class="bg-[#4A3728] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition font-bold">Add to Bag</button>
                     <a id="whatsappOrder" href="" target="_blank" class="border border-[#4A3728] text-[#4A3728] py-4 text-center font-bold uppercase tracking-[0.3em] text-[10px]">Order on WhatsApp</a>
                 </div>
             </div>
@@ -119,7 +120,7 @@
                 name: "Basant Glow - Florel Kurti", 
                 price: 999, 
                 cat: "Premium Cotton", 
-                desc: "Handcrafted signature piece from The Thread Theory.", 
+                desc: "Handcrafted signature piece from The Thread Theory. Intricate floral motifs on 100% organic cotton.", 
                 images: [
                     "https://lh3.googleusercontent.com/d/164Cp3NtrGJymKiTQuRRjqOLKHZQsP2Cv",
                     "https://lh3.googleusercontent.com/d/1bDnSmvdJZgIc5PMuK10-NTEs7x4iWtDf",
@@ -134,8 +135,8 @@
             const grid = document.getElementById('productGrid');
             grid.innerHTML = list.map(p => `
                 <div class="product-card group cursor-pointer" onclick="openProductModal(${p.id})">
-                    <div class="relative overflow-hidden bg-[#F9F5F0] aspect-[3/4] mb-4 shadow-sm">
-                        <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4 shadow-sm border border-gray-100">
+                        <img src="${p.images[0]}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
                     <p class="text-[8px] tracking-[0.4em] text-gray-400 uppercase mb-1 font-bold">${p.cat}</p>
                     <h3 class="text-[10px] md:text-xs tracking-widest font-bold text-gray-900 uppercase mb-1">${p.name}</h3>
@@ -168,17 +169,8 @@
         }
 
         function closeProductModal() { document.getElementById('productModal').classList.add('modal-hidden'); document.body.classList.remove('modal-active'); }
-        
-        function toggleSearch() {
-            const bar = document.getElementById('searchBar');
-            bar.classList.toggle('hidden');
-            if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus();
-        }
-
-        function filterProducts() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            renderProducts(products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term)));
-        }
+        function toggleSearch() { const bar = document.getElementById('searchBar'); bar.classList.toggle('hidden'); if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus(); }
+        function filterProducts() { const term = document.getElementById('searchInput').value.toLowerCase(); renderProducts(products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term))); }
 
         renderProducts(products);
     </script>
