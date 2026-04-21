@@ -9,191 +9,236 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #F9F5F0; margin: 0; padding: 0; scroll-behavior: smooth; }
         h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
-        .vertical-text { writing-mode: vertical-rl; }
         .modal-hidden { display: none !important; }
         body.modal-active { overflow: hidden; }
         .product-card:hover img { transform: scale(1.05); }
-        #searchBar.active { display: flex; }
+        .search-active { display: block !important; }
+        /* Smooth transitions */
+        .transition-all-custom { transition: all 0.3s ease-in-out; }
     </style>
 </head>
 <body>
 
     <nav class="flex items-center justify-between px-6 py-4 bg-[#F9F5F0] border-b border-gray-200 sticky top-0 z-50">
         <div class="text-gray-600 space-x-6 hidden md:flex text-[10px] tracking-widest uppercase">
-            <a href="#" class="hover:text-black transition">Home</a>
+            <a href="index.html" class="hover:text-black transition">Home</a>
             <a href="#shop" class="hover:text-black transition">Collections</a>
+            <a href="#about" class="hover:text-black transition">About</a>
         </div>
-        <div class="text-center">
+        
+        <div class="text-center cursor-pointer" onclick="window.location.href='index.html'">
             <h1 class="text-xl md:text-2xl tracking-[0.3em] font-bold text-[#4A3728]">THE THREAD THEORY</h1>
             <p class="text-[9px] tracking-[0.4em] text-[#8B735B] uppercase">Premium Ethnic Wear</p>
         </div>
+
         <div class="flex items-center space-x-5 text-gray-700">
-            <button onclick="toggleSearch()" class="focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <button onclick="toggleSearch()" class="focus:outline-none hover:text-[#C19A6B] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </button>
-            <div class="relative cursor-pointer" onclick="alert('Cart functionality ready! Items: ' + cart.length)">
+            <div class="relative cursor-pointer hover:text-[#C19A6B] transition" onclick="alert('Bag holds ' + cart.length + ' items. Checkout coming soon!')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cartCount" class="absolute -top-2 -right-2 bg-[#C19A6B] text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">0</span>
             </div>
         </div>
     </nav>
 
-    <div id="searchBar" class="hidden fixed top-[72px] left-0 w-full bg-white border-b border-gray-200 p-4 z-40 animate-fade-in">
-        <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search products (e.g. Kurti, Basant)..." class="w-full max-w-4xl mx-auto block bg-gray-50 border border-gray-200 px-4 py-2 text-sm focus:outline-none focus:border-[#C19A6B]">
+    <div id="searchBar" class="hidden fixed top-[72px] left-0 w-full bg-white border-b border-gray-200 p-6 z-40 shadow-xl transition-all-custom">
+        <div class="max-w-4xl mx-auto flex items-center">
+            <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="What are you looking for? (e.g. Floral, Silk, Kurta)..." class="w-full bg-transparent border-none text-lg md:text-2xl focus:outline-none brand-font italic">
+            <button onclick="toggleSearch()" class="ml-4 text-gray-400">✕</button>
+        </div>
     </div>
 
     <section class="relative h-[85vh] flex items-center bg-[#2C3E50] overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero Background" class="w-full h-full object-cover opacity-70">
-        </div>
-        <div class="relative z-10 px-8 md:px-16 text-white max-w-2xl">
-            <h2 class="text-4xl md:text-6xl mb-6 leading-tight font-bold uppercase tracking-tight">Modern Indian Ethnics.</h2>
-            <p class="text-lg mb-8 font-light tracking-wide">Timeless designs, crafted for the modern woman.</p>
-            <button onclick="document.getElementById('shop').scrollIntoView()" class="border border-white text-white px-10 py-4 text-sm tracking-[0.2em] font-semibold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
+        <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" class="absolute inset-0 w-full h-full object-cover opacity-50">
+        <div class="relative z-10 px-8 md:px-16 text-white max-w-3xl">
+            <h2 class="text-5xl md:text-7xl mb-6 font-bold leading-tight brand-font uppercase">Modern <br>Indian Ethnics.</h2>
+            <p class="text-lg mb-10 font-light tracking-widest uppercase opacity-80">Handcrafted in Noida • Est. 2026</p>
+            <button onclick="document.getElementById('shop').scrollIntoView()" class="border-2 border-white px-12 py-5 text-sm tracking-[0.3em] font-bold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
         </div>
     </section>
 
-    <section id="shop" class="container mx-auto px-6 py-20">
-        <div class="flex flex-col items-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold tracking-[0.2em] text-[#4A3728] mb-2 uppercase">New Arrivals</h2>
-            <div class="h-0.5 w-16 bg-[#C19A6B]"></div>
+    <section id="shop" class="container mx-auto px-6 py-24">
+        <div class="flex flex-col items-center mb-20 text-center">
+            <p class="text-[10px] tracking-[0.5em] text-[#C19A6B] uppercase mb-2 font-bold italic">Curated Collection</p>
+            <h2 class="text-4xl font-bold tracking-[0.2em] text-[#4A3728] uppercase">New Arrivals</h2>
+            <div class="h-0.5 w-20 bg-[#C19A6B] mt-4"></div>
         </div>
 
-        <div id="productGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+        <div id="productGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             </div>
     </section>
 
-    <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-80 flex items-center justify-center p-0 md:p-4">
-        <div class="bg-white w-full h-full md:h-auto md:max-w-5xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
-            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-3xl font-light z-50">✕</button>
+    <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-0 md:p-10">
+        <div class="bg-white w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative shadow-2xl">
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-3xl font-light z-50 hover:rotate-90 transition">✕</button>
             
-            <div class="md:w-1/2 bg-gray-50 flex flex-col">
-                <img id="mainModalImg" src="" class="w-full aspect-[3/4] object-cover">
-                <div class="flex gap-2 p-4 overflow-x-auto" id="thumbGallery">
+            <div class="md:w-3/5 bg-[#F9F5F0] flex flex-col">
+                <div class="relative overflow-hidden group">
+                    <img id="mainModalImg" src="" class="w-full aspect-[3/4] object-cover">
+                </div>
+                <div id="thumbGallery" class="flex gap-4 p-4 justify-center bg-white border-t border-gray-100 overflow-x-auto">
                     </div>
             </div>
 
-            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                <p id="modalCategory" class="text-[10px] tracking-[0.4em] text-[#C19A6B] uppercase mb-2 font-bold"></p>
-                <h2 id="modalTitle" class="text-3xl font-bold mb-2 brand-font text-[#4A3728]"></h2>
-                <p id="modalPrice" class="text-2xl text-[#C19A6B] font-semibold mb-8"></p>
-                <div class="mb-10">
-                    <h4 class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3 text-gray-400">Description</h4>
-                    <p id="modalDesc" class="text-[12px] leading-relaxed text-gray-600 font-light italic"></p>
+            <div class="md:w-2/5 p-10 md:p-16 flex flex-col justify-center">
+                <p id="modalCat" class="text-[10px] tracking-[0.5em] text-[#C19A6B] uppercase font-bold mb-4"></p>
+                <h2 id="modalTitle" class="text-4xl font-bold mb-4 text-[#4A3728] brand-font leading-tight"></h2>
+                <p id="modalPrice" class="text-3xl font-light text-[#C19A6B] mb-8"></p>
+                
+                <div class="mb-10 space-y-4">
+                    <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 border-b pb-2">Description</h4>
+                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic font-light"></p>
                 </div>
-                <div class="flex flex-col gap-3">
-                    <button id="addToBagBtn" class="bg-[#4A3728] text-white py-4 text-xs tracking-[0.3em] uppercase font-bold hover:bg-black transition">Add to Bag</button>
-                    <button class="border border-[#4A3728] text-[#4A3728] py-4 text-xs tracking-[0.3em] uppercase font-bold">Order on WhatsApp</button>
+
+                <div class="flex flex-col gap-4">
+                    <button onclick="initiateBuyNow()" class="bg-[#C19A6B] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition-all shadow-lg">Buy It Now</button>
+                    <button id="addToBagBtn" class="bg-[#4A3728] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition-all">Add to Bag</button>
+                    <a id="whatsappOrder" href="" target="_blank" class="border border-[#4A3728] text-[#4A3728] py-4 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center justify-center gap-3 hover:bg-gray-50">
+                        Order on WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="checkoutModal" class="modal-hidden fixed inset-0 z-[110] bg-black bg-opacity-95 flex items-center justify-center p-4">
+        <div class="bg-white p-10 max-w-sm w-full text-center shadow-2xl">
+            <div class="mb-6 flex justify-center"><div class="w-12 h-12 bg-[#F9F5F0] rounded-full flex items-center justify-center">🔒</div></div>
+            <h3 class="text-2xl font-bold mb-2 brand-font uppercase">Secure Checkout</h3>
+            <p class="text-[10px] text-gray-500 mb-8 uppercase tracking-widest">Verify Mobile for Order Tracking</p>
+            <input type="tel" placeholder="+91 00000 00000" class="w-full border-b-2 border-gray-100 p-4 mb-8 text-center text-xl focus:outline-none focus:border-[#C19A6B] transition">
+            <button onclick="alert('OTP Sent! Integration with Razorpay starting...')" class="w-full bg-black text-white py-4 text-xs font-bold uppercase tracking-[0.2em] shadow-xl">Get OTP on WhatsApp</button>
+            <button onclick="document.getElementById('checkoutModal').classList.add('modal-hidden')" class="mt-8 text-[10px] uppercase tracking-widest text-gray-400 hover:text-black">Cancel</button>
+        </div>
+    </div>
+
+    <footer id="about" class="bg-white border-t border-gray-100 pt-24 pb-12">
+        <div class="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div class="col-span-1 md:col-span-1">
+                <h4 class="brand-font text-2xl font-bold text-[#4A3728] mb-6 tracking-wider uppercase">The Thread Theory</h4>
+                <p class="text-xs leading-loose text-gray-500 italic">Bridging the gap between timeless Indian tradition and modern minimal aesthetics. Every thread tells a story of craftsmanship.</p>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block">Noida Studio</h4>
+                <p class="text-xs leading-relaxed text-gray-500">Sector 18, Noida, Uttar Pradesh<br>India - 201301</p>
+                <p class="text-xs mt-4 text-[#C19A6B] font-bold underline cursor-pointer" onclick="window.location.href='tel:+919068617744'">+91 9068617744</p>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block">Customer Care</h4>
+                <ul class="text-[10px] space-y-4 tracking-widest text-gray-400 uppercase">
+                    <li class="hover:text-black cursor-pointer">Shipping & Returns</li>
+                    <li class="hover:text-black cursor-pointer">Size Guide</li>
+                    <li class="hover:text-black cursor-pointer">Privacy Policy</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block">Join the Tribe</h4>
+                <div class="flex border-b border-gray-200 py-2">
+                    <input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full text-[10px] focus:outline-none">
+                    <button class="text-[10px] font-bold uppercase hover:text-[#C19A6B]">Join</button>
+                </div>
+                <div class="flex space-x-6 mt-8">
+                    <a href="https://wa.me/919068617744" target="_blank" class="text-xs uppercase font-bold tracking-widest hover:text-[#C19A6B]">WhatsApp</a>
+                    <a href="#" class="text-xs uppercase font-bold tracking-widest hover:text-[#C19A6B]">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-[9px] tracking-[0.5em] text-gray-300 border-t border-gray-50 pt-10 uppercase font-bold">
+            © 2026 THE THREAD THEORY • Modern Indian Ethnics • Noida
+        </div>
+    </footer>
+
     <script>
-        // 1. PRODUCT DATA (Yaha tum apne 10 products ki details aur Drive images daal sakte ho)
+        // 1. DATABASE: 10 Products with Placeholders
         const products = [
-            {
-                id: 1,
-                name: "Basant Glow - Floral Kurti",
-                price: 1499,
-                category: "New Arrival",
-                desc: "Premium organic cotton, handcrafted in Noida. Soft, breathable and perfect for the summer heat.",
-                images: [
-                    "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", // Image 1
-                    "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", // Image 2
-                    "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"  // Image 3
-                ]
-            },
-            // Tum yaha aise hi 9 aur products add kar sakte ho...
-            {
-                id: 2,
-                name: "Azure Silk Kurta",
-                price: 2499,
-                category: "Pure Silk",
-                desc: "Elegant blue silk kurta for special occasions.",
-                images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"]
-            }
+            { id: 1, name: "Basant Glow - Floral Kurti", price: 1499, cat: "Premium Cotton", desc: "Our signature piece. Handcrafted floral motifs on 100% organic cotton. A blend of joy and luxury.", images: ["https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 2, name: "Azure Silk Kurta", price: 2499, cat: "Ethnic Silk", desc: "Royal blue hues met with raw silk texture. Designed for evening grace.", images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 3, name: "Ivory Zen Kurta", price: 1899, cat: "Sustainable Linen", desc: "Minimalist white linen for the soul that values simplicity and comfort.", images: ["https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 4, name: "Saffron Soul Kurta", price: 1599, cat: "Cotton Blend", desc: "Warm earthy tones perfect for festive mornings. Lightweight and vibrant.", images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 5, name: "Midnight Ink Kurta", price: 2199, cat: "Premium Cotton", desc: "Deep black fabric with subtle metallic embroidery. Sophistication redefined.", images: ["https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 6, name: "Olive Earth Kurta", price: 1699, cat: "Handspun Khadi", desc: "Breathable handspun khadi in a classic olive tone. A tribute to nature.", images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 7, name: "Sunset Gold Nehru Jacket", price: 2999, cat: "Velvet Silk", desc: "The perfect layer for weddings. Luxurious velvet with gold thread work.", images: ["https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 8, name: "Moonlight Silver Kurta", price: 2299, cat: "Shimmer Silk", desc: "Elegant silver-grey silk that catches the light in every celebration.", images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 9, name: "Earthy Maroon Kurta", price: 1499, cat: "Organic Cotton", desc: "Rich maroon cotton, bio-washed for ultimate softness.", images: ["https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600"] },
+            { id: 10, name: "Royal Emerald Sherwani", price: 5499, cat: "Brocade", desc: "The ultimate wedding ensemble. Emerald green brocade with royal buttons.", images: ["https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=600", "https://images.pexels.com/photos/19565551/pexels-photo-19565551.jpeg?auto=compress&cs=tinysrgb&w=600"] }
         ];
 
         let cart = JSON.parse(localStorage.getItem('ttt_cart')) || [];
-        updateCartDisplay();
-
-        // 2. RENDER PRODUCTS TO GRID
-        function renderProducts(productsList) {
+        
+        // 2. RENDER PRODUCTS
+        function renderProducts(list) {
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = productsList.map(product => `
-                <div class="product-card group cursor-pointer" onclick="openProductModal(${product.id})">
-                    <div class="relative overflow-hidden bg-gray-100 aspect-[3/4] mb-4">
-                        <img src="${product.images[0]}" class="w-full h-full object-cover transition-transform duration-700">
+            grid.innerHTML = list.map(p => `
+                <div class="product-card group cursor-pointer" onclick="openProductModal(${p.id})">
+                    <div class="relative overflow-hidden bg-[#F9F5F0] aspect-[3/4] mb-4">
+                        <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all"></div>
                     </div>
-                    <h3 class="text-[10px] md:text-xs tracking-widest font-semibold text-gray-900 uppercase">${product.name}</h3>
-                    <p class="text-[9px] text-gray-500 italic mb-1">${product.category}</p>
-                    <p class="text-xs md:text-sm font-bold text-[#4A3728]">₹${product.price.toLocaleString()}.00</p>
+                    <p class="text-[8px] tracking-[0.4em] text-gray-400 uppercase mb-1">${p.cat}</p>
+                    <h3 class="text-[10px] md:text-xs tracking-widest font-bold text-gray-900 uppercase mb-1">${p.name}</h3>
+                    <p class="text-sm font-bold text-[#4A3728]">₹${p.price.toLocaleString()}.00</p>
                 </div>
             `).join('');
-        }
-
-        renderProducts(products);
-
-        // 3. MODAL LOGIC
-        const modal = document.getElementById('productModal');
-        function openProductModal(id) {
-            const p = products.find(prod => prod.id === id);
-            document.getElementById('modalTitle').innerText = p.name;
-            document.getElementById('modalPrice').innerText = `₹${p.price.toLocaleString()}.00`;
-            document.getElementById('modalDesc').innerText = p.desc;
-            document.getElementById('modalCategory').innerText = p.category;
-            
-            const mainImg = document.getElementById('mainModalImg');
-            mainImg.src = p.images[0];
-
-            // Setup Thumbnails (3 images logic)
-            const thumbGallery = document.getElementById('thumbGallery');
-            thumbGallery.innerHTML = p.images.map(img => `
-                <img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-20 h-20 object-cover cursor-pointer hover:opacity-70 border border-gray-200">
-            `).join('');
-
-            // Add to Bag Button
-            document.getElementById('addToBagBtn').onclick = () => addToBag(p);
-
-            modal.classList.remove('modal-hidden');
-            document.body.classList.add('modal-active');
-        }
-
-        function closeProductModal() {
-            modal.classList.add('modal-hidden');
-            document.body.classList.remove('modal-active');
-        }
-
-        // 4. BAG/CART LOGIC
-        function addToBag(product) {
-            cart.push(product);
-            localStorage.setItem('ttt_cart', JSON.stringify(cart));
-            updateCartDisplay();
-            alert(`${product.name} added to your bag!`);
-        }
-
-        function updateCartDisplay() {
             document.getElementById('cartCount').innerText = cart.length;
         }
 
-        // 5. SEARCH LOGIC
+        // 3. SEARCH LOGIC
         function toggleSearch() {
-            document.getElementById('searchBar').classList.toggle('hidden');
-            document.getElementById('searchInput').focus();
+            const bar = document.getElementById('searchBar');
+            bar.classList.toggle('hidden');
+            if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus();
         }
 
         function filterProducts() {
             const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = products.filter(p => 
-                p.name.toLowerCase().includes(term) || 
-                p.category.toLowerCase().includes(term)
-            );
+            const filtered = products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term));
             renderProducts(filtered);
         }
 
-        // Back button logic for mobile
-        window.onpopstate = function() { closeProductModal(); };
+        // 4. MODAL LOGIC
+        function openProductModal(id) {
+            const p = products.find(x => x.id === id);
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalPrice').innerText = `₹${p.price.toLocaleString()}.00`;
+            document.getElementById('modalDesc').innerText = p.desc;
+            document.getElementById('modalCat').innerText = p.cat;
+            
+            const mainImg = document.getElementById('mainModalImg');
+            mainImg.src = p.images[0];
+
+            const thumbGallery = document.getElementById('thumbGallery');
+            thumbGallery.innerHTML = p.images.map(img => `
+                <img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B] transition shadow-sm">
+            `).join('');
+
+            // WhatsApp link update
+            const waMsg = encodeURIComponent(`Hi! I'm interested in the ${p.name} (₹${p.price}). Can you help me with more details?`);
+            document.getElementById('whatsappOrder').href = `https://wa.me/919068617744?text=${waMsg}`;
+
+            // Add to Bag Logic
+            document.getElementById('addToBagBtn').onclick = () => {
+                cart.push(p);
+                localStorage.setItem('ttt_cart', JSON.stringify(cart));
+                document.getElementById('cartCount').innerText = cart.length;
+                alert('Success! Added to your bag.');
+            };
+
+            document.getElementById('productModal').classList.remove('modal-hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('modal-hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        function initiateBuyNow() {
+            document.getElementById('checkoutModal').classList.remove('modal-hidden');
+        }
+
+        // Initialize
+        renderProducts(products);
     </script>
 </body>
 </html>
