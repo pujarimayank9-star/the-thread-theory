@@ -33,7 +33,7 @@
             <button onclick="toggleSearch()" class="focus:outline-none hover:text-[#C19A6B] transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </button>
-            <div class="relative cursor-pointer hover:text-[#C19A6B] transition" onclick="alert('Bag holds ' + cart.length + ' items.')">
+            <div class="relative cursor-pointer hover:text-[#C19A6B] transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cartCount" class="absolute -top-2 -right-2 bg-[#C19A6B] text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">0</span>
             </div>
@@ -85,13 +85,13 @@
             </div>
         </div>
         <div class="text-center text-[9px] tracking-[0.5em] text-gray-300 border-t border-gray-50 pt-10 uppercase font-bold">
-            © 2026 THE THREAD THEORY • Noida
+            © 2026 THE THREAD THEORY • Modern Indian Ethnics • Noida
         </div>
     </footer>
 
     <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-0 md:p-10">
         <div class="bg-white w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative shadow-2xl">
-            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-3xl font-light z-50 hover:rotate-90 transition">✕</button>
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-3xl font-light z-50">✕</button>
             <div class="md:w-3/5 bg-[#F9F5F0] flex flex-col">
                 <img id="mainModalImg" src="" class="w-full aspect-[3/4] object-cover">
                 <div id="thumbGallery" class="flex gap-4 p-4 justify-center bg-white border-t border-gray-100 overflow-x-auto"></div>
@@ -102,10 +102,9 @@
                 <p id="modalPrice" class="text-3xl font-light text-[#C19A6B] mb-8"></p>
                 <div class="mb-10 space-y-4">
                     <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 border-b pb-2 font-bold">Description</h4>
-                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic font-light"></p>
+                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic"></p>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <button class="bg-[#C19A6B] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] shadow-lg hover:bg-black transition">Buy It Now</button>
                     <button id="addToBagBtn" class="bg-[#4A3728] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition">Add to Bag</button>
                     <a id="whatsappOrder" href="" target="_blank" class="border border-[#4A3728] text-[#4A3728] py-4 text-center font-bold uppercase tracking-[0.3em] text-[10px]">Order on WhatsApp</a>
                 </div>
@@ -120,11 +119,11 @@
                 name: "Basant Glow - Florel Kurti", 
                 price: 999, 
                 cat: "Premium Cotton", 
-                desc: "The Thread Theory signature handcrafted piece. Features intricate floral motifs and 100% organic cotton.", 
+                desc: "Handcrafted signature piece from The Thread Theory.", 
                 images: [
-                    "https://drive.google.com/uc?export=view&id=164Cp3NtrGJymKiTQuRRjqOLKHZQsP2Cv",
-                    "https://drive.google.com/uc?export=view&id=1bDnSmvdJZgIc5PMuK10-NTEs7x4iWtDf",
-                    "https://drive.google.com/uc?export=view&id=1LT8RSYTa4O_HPsuDokwQ04Qq7nqKq5QR"
+                    "https://lh3.googleusercontent.com/d/164Cp3NtrGJymKiTQuRRjqOLKHZQsP2Cv",
+                    "https://lh3.googleusercontent.com/d/1bDnSmvdJZgIc5PMuK10-NTEs7x4iWtDf",
+                    "https://lh3.googleusercontent.com/d/1LT8RSYTa4O_HPsuDokwQ04Qq7nqKq5QR"
                 ] 
             }
         ];
@@ -153,11 +152,9 @@
             document.getElementById('modalDesc').innerText = p.desc;
             document.getElementById('modalCat').innerText = p.cat;
             document.getElementById('mainModalImg').src = p.images[0];
-            document.getElementById('thumbGallery').innerHTML = p.images.map(img => `
-                <img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B] transition shadow-sm">
-            `).join('');
+            document.getElementById('thumbGallery').innerHTML = p.images.map(img => `<img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B] transition shadow-sm">`).join('');
             
-            document.getElementById('whatsappOrder').href = `https://wa.me/919068617744?text=Hi! I'm interested in ${p.name}`;
+            document.getElementById('whatsappOrder').href = `https://wa.me/919068617744?text=Hi! I am interested in ${p.name}`;
 
             document.getElementById('addToBagBtn').onclick = () => {
                 cart.push(p);
@@ -170,11 +167,8 @@
             document.body.classList.add('modal-active');
         }
 
-        function closeProductModal() {
-            document.getElementById('productModal').classList.add('modal-hidden');
-            document.body.classList.remove('modal-active');
-        }
-
+        function closeProductModal() { document.getElementById('productModal').classList.add('modal-hidden'); document.body.classList.remove('modal-active'); }
+        
         function toggleSearch() {
             const bar = document.getElementById('searchBar');
             bar.classList.toggle('hidden');
