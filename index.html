@@ -13,7 +13,6 @@
         body.modal-active { overflow: hidden; }
         .product-card:hover img { transform: scale(1.05); }
         .transition-all-custom { transition: all 0.3s ease-in-out; }
-        #searchBar.hidden { display: none; }
     </style>
 </head>
 <body>
@@ -43,8 +42,8 @@
 
     <div id="searchBar" class="hidden fixed top-[72px] left-0 w-full bg-white border-b border-gray-200 p-6 z-40 shadow-xl transition-all-custom">
         <div class="max-w-4xl mx-auto flex items-center">
-            <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="What are you looking for?" class="w-full bg-transparent border-none text-lg md:text-2xl focus:outline-none brand-font italic">
-            <button onclick="toggleSearch()" class="ml-4 text-gray-400 font-bold">✕</button>
+            <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Floral, Kurti, Cotton..." class="w-full bg-transparent border-none text-lg md:text-2xl focus:outline-none brand-font italic">
+            <button onclick="toggleSearch()" class="ml-4 text-gray-400 font-bold text-xl">✕</button>
         </div>
     </div>
 
@@ -52,7 +51,7 @@
         <img src="https://images.pexels.com/photos/19565548/pexels-photo-19565548.jpeg?auto=compress&cs=tinysrgb&w=1600" class="absolute inset-0 w-full h-full object-cover opacity-50">
         <div class="relative z-10 px-8 md:px-16 text-white max-w-3xl">
             <h2 class="text-5xl md:text-7xl mb-6 font-bold leading-tight brand-font uppercase">Modern <br>Indian Ethnics.</h2>
-            <p class="text-lg mb-10 font-light tracking-widest uppercase opacity-80">Handcrafted in Noida • Est. 2026</p>
+            <p class="text-lg mb-10 font-light tracking-widest uppercase opacity-80 font-bold">Handcrafted in Noida • Est. 2026</p>
             <button onclick="document.getElementById('shop').scrollIntoView()" class="border-2 border-white px-12 py-5 text-sm tracking-[0.3em] font-bold hover:bg-white hover:text-black transition-all uppercase">Shop Collection</button>
         </div>
     </section>
@@ -74,32 +73,25 @@
             </div>
             <div>
                 <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block font-bold">Noida Studio</h4>
-                <p class="text-xs leading-relaxed text-gray-500">Sector 18, Noida, Uttar Pradesh<br>India - 201301</p>
+                <p class="text-xs text-gray-500">Sector 18, Noida, Uttar Pradesh<br>India - 201301</p>
                 <p class="text-xs mt-4 text-[#C19A6B] font-bold underline cursor-pointer" onclick="window.location.href='tel:+919068617744'">+91 9068617744</p>
             </div>
             <div>
-                <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block">Support</h4>
-                <ul class="text-[10px] space-y-4 tracking-widest text-gray-400 uppercase font-bold">
-                    <li class="hover:text-black cursor-pointer">Shipping & Returns</li>
-                    <li class="hover:text-black cursor-pointer">Privacy Policy</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block font-bold">Social</h4>
-                <div class="flex space-x-6 mt-2">
-                    <a href="https://wa.me/919068617744" target="_blank" class="text-[10px] uppercase font-bold tracking-widest hover:text-[#C19A6B]">WhatsApp</a>
-                    <a href="https://instagram.com" target="_blank" class="text-[10px] uppercase font-bold tracking-widest hover:text-[#C19A6B]">Instagram</a>
+                <h4 class="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-900 mb-8 border-b pb-2 inline-block font-bold">Connect</h4>
+                <div class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                    <a href="https://wa.me/919068617744" target="_blank" class="hover:text-black">WhatsApp</a>
+                    <a href="#" class="hover:text-black">Instagram</a>
                 </div>
             </div>
         </div>
         <div class="text-center text-[9px] tracking-[0.5em] text-gray-300 border-t border-gray-50 pt-10 uppercase font-bold">
-            © 2026 THE THREAD THEORY • Modern Indian Ethnics • Noida
+            © 2026 THE THREAD THEORY • Noida
         </div>
     </footer>
 
     <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-0 md:p-10">
         <div class="bg-white w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative shadow-2xl">
-            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-3xl font-light z-50">✕</button>
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-3xl font-light z-50 hover:rotate-90 transition">✕</button>
             <div class="md:w-3/5 bg-[#F9F5F0] flex flex-col">
                 <img id="mainModalImg" src="" class="w-full aspect-[3/4] object-cover">
                 <div id="thumbGallery" class="flex gap-4 p-4 justify-center bg-white border-t border-gray-100 overflow-x-auto"></div>
@@ -110,12 +102,12 @@
                 <p id="modalPrice" class="text-3xl font-light text-[#C19A6B] mb-8"></p>
                 <div class="mb-10 space-y-4">
                     <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 border-b pb-2 font-bold">Description</h4>
-                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic"></p>
+                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic font-light"></p>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <button class="bg-[#C19A6B] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition shadow-lg">Buy It Now</button>
+                    <button class="bg-[#C19A6B] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] shadow-lg hover:bg-black transition">Buy It Now</button>
                     <button id="addToBagBtn" class="bg-[#4A3728] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] hover:bg-black transition">Add to Bag</button>
-                    <a id="whatsappOrder" href="" target="_blank" class="border border-[#4A3728] text-[#4A3728] py-4 text-center font-bold uppercase tracking-[0.3em] text-[10px] flex items-center justify-center gap-2">Order on WhatsApp</a>
+                    <a id="whatsappOrder" href="" target="_blank" class="border border-[#4A3728] text-[#4A3728] py-4 text-center font-bold uppercase tracking-[0.3em] text-[10px]">Order on WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -128,7 +120,7 @@
                 name: "Basant Glow - Florel Kurti", 
                 price: 999, 
                 cat: "Premium Cotton", 
-                desc: "Handcrafted signature piece from The Thread Theory. Features intricate floral motifs and 100% organic cotton for ultimate comfort.", 
+                desc: "The Thread Theory signature handcrafted piece. Features intricate floral motifs and 100% organic cotton.", 
                 images: [
                     "https://drive.google.com/uc?export=view&id=164Cp3NtrGJymKiTQuRRjqOLKHZQsP2Cv",
                     "https://drive.google.com/uc?export=view&id=1bDnSmvdJZgIc5PMuK10-NTEs7x4iWtDf",
@@ -161,23 +153,38 @@
             document.getElementById('modalDesc').innerText = p.desc;
             document.getElementById('modalCat').innerText = p.cat;
             document.getElementById('mainModalImg').src = p.images[0];
-            document.getElementById('thumbGallery').innerHTML = p.images.map(img => `<img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B] transition shadow-sm">`).join('');
-            document.getElementById('whatsappOrder').href = `https://wa.me/919068617744?text=Hi! I am interested in ${p.name} (${p.cat})`;
+            document.getElementById('thumbGallery').innerHTML = p.images.map(img => `
+                <img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B] transition shadow-sm">
+            `).join('');
             
+            document.getElementById('whatsappOrder').href = `https://wa.me/919068617744?text=Hi! I'm interested in ${p.name}`;
+
             document.getElementById('addToBagBtn').onclick = () => {
                 cart.push(p);
                 localStorage.setItem('ttt_cart', JSON.stringify(cart));
                 document.getElementById('cartCount').innerText = cart.length;
-                alert('Success! Item added to bag.');
+                alert('Success! Added to bag.');
             };
 
             document.getElementById('productModal').classList.remove('modal-hidden');
             document.body.classList.add('modal-active');
         }
 
-        function closeProductModal() { document.getElementById('productModal').classList.add('modal-hidden'); document.body.classList.remove('modal-active'); }
-        function toggleSearch() { const bar = document.getElementById('searchBar'); bar.classList.toggle('hidden'); if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus(); }
-        function filterProducts() { const term = document.getElementById('searchInput').value.toLowerCase(); renderProducts(products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term))); }
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('modal-hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        function toggleSearch() {
+            const bar = document.getElementById('searchBar');
+            bar.classList.toggle('hidden');
+            if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus();
+        }
+
+        function filterProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            renderProducts(products.filter(p => p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term)));
+        }
 
         renderProducts(products);
     </script>
