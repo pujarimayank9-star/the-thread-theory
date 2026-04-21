@@ -61,7 +61,33 @@
                 </div>
             </div>
         </div>
+        <div class="text-center text-[9px] tracking-[0.5em] text-gray-300 border-t border-gray-50 pt-10 uppercase font-bold">
+            © 2026 THE THREAD THEORY • Modern Indian Ethnics • Noida
+        </div>
     </footer>
+
+    <div id="productModal" class="modal-hidden fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-0 md:p-10">
+        <div class="bg-white w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative shadow-2xl">
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-3xl font-light z-50">✕</button>
+            <div class="md:w-3/5 bg-[#F9F5F0] flex flex-col">
+                <img id="mainModalImg" src="" class="w-full aspect-[3/4] object-cover">
+                <div id="thumbGallery" class="flex gap-4 p-4 justify-center bg-white border-t border-gray-100 overflow-x-auto"></div>
+            </div>
+            <div class="md:w-2/5 p-10 md:p-16 flex flex-col justify-center">
+                <p id="modalCat" class="text-[10px] tracking-[0.5em] text-[#C19A6B] uppercase font-bold mb-4"></p>
+                <h2 id="modalTitle" class="text-4xl font-bold mb-4 text-[#4A3728] brand-font leading-tight"></h2>
+                <p id="modalPrice" class="text-3xl font-light text-[#C19A6B] mb-8"></p>
+                <div class="mb-10 space-y-4">
+                    <h4 class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 border-b pb-2">Description</h4>
+                    <p id="modalDesc" class="text-sm leading-relaxed text-gray-600 italic font-light"></p>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <button class="bg-[#C19A6B] text-white py-5 text-xs font-bold uppercase tracking-[0.3em] shadow-lg">Buy It Now</button>
+                    <a id="whatsappOrder" href="" target="_blank" class="border border-[#4A3728] text-[#4A3728] py-4 text-center font-bold uppercase tracking-[0.3em] text-[10px]">Order on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         const products = [
@@ -99,14 +125,24 @@
             const p = products.find(x => x.id === id);
             document.getElementById('modalTitle').innerText = p.name;
             document.getElementById('modalPrice').innerText = `₹${p.price}.00`;
+            document.getElementById('modalDesc').innerText = p.desc;
+            document.getElementById('modalCat').innerText = p.cat;
             document.getElementById('mainModalImg').src = p.images[0];
-            document.getElementById('thumbGallery').innerHTML = p.images.map(img => `
-                <img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B]">
-            `).join('');
+            document.getElementById('thumbGallery').innerHTML = p.images.map(img => `<img src="${img}" onclick="document.getElementById('mainModalImg').src='${img}'" class="w-16 h-20 object-cover cursor-pointer border border-gray-100 hover:border-[#C19A6B]">`).join('');
+            document.getElementById('whatsappOrder').href = `https://wa.me/919068617744?text=Interested in ${p.name}`;
             document.getElementById('productModal').classList.remove('modal-hidden');
+            document.body.classList.add('modal-active');
         }
 
-        // Baki functions toggleSearch, closeProductModal...
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('modal-hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        function toggleSearch() {
+            // Logic for search toggle if needed
+        }
+
         renderProducts(products);
     </script>
 </body>
